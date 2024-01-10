@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  viewMode:string="list";
+
+  constructor(){}
+
+  changeView(value:string){
+    this.viewMode=value;
+    
+    //console.log(value);
+}
 
 }

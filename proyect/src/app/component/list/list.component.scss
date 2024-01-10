@@ -1,9 +1,12 @@
 .spacer {
     flex: 1 1 auto;
 }
+
 .card {
-    max-width: 400px;
+    max-width: 350px;
+    min-width: 223px;
 }
+
 .header-image{
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
@@ -14,6 +17,12 @@
     align-self: center;
     align-content: center;
 }
+.grid {
+    margin: 1em;
+    margin:1em auto;
+    max-width: 1450px;
+}
+/* Descomentar esta parte si se quiere que funcione con flex
 .grid {
     margin: 1em;
     display: flex;
@@ -28,3 +37,4 @@
   margin: 1em;
 
 }
+*/
