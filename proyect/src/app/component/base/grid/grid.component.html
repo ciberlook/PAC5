@@ -1,0 +1,9 @@
+<mat-grid-list [cols]="breakpoint" rowHeight="500px" gutterSize="10px" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let item of animeList">
+      <a [routerLink]="['/detail',item.id]">
+        <app-card [viewMode]="viewMode" [anime]="item"></app-card>
+      </a>
+    </mat-grid-tile>
+    
+
+  </mat-grid-list>

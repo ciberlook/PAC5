@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { AnimeDTO } from 'src/app/model/animeDTO/anime.dto';
+import { PageDTO } from 'src/app/model/pageDTO/page.dto';
+import { AnimeService } from 'src/app/services/anime-service.service';
 
 @Component({
   selector: 'app-list',
@@ -8,35 +12,56 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ListComponent implements OnInit {
   
   @Input() viewMode:string;
-  breakpoint:number;
+  anime:AnimeDTO[];
+  page: PageDTO;
+  longitud:number;
+  pageSize:number;
+  pageSizeOptions:number[];
+  pageIndex:number;
 
-  constructor(){
+  constructor(private animeService:AnimeService){
     this.viewMode="grid";
-    this.breakpoint=1;
-  }
-
-  returnColumn(width:number):number{
-    let column:number=1;
-    if (width<=400)
-        column=1;
-      else if (width<=800)
-        column=2;
-      else if (width<=1300)
-        column=3;
-      else
-        column=4;
-      return column;
+    this.anime=[];
+    this.longitud=0;
+    this.pageSize=0;
+    this.pageSizeOptions=[];
+    this.pageIndex=0;
+    this.page={
+      last_visible_page:0,
+      has_next_page:false,
+      current_page:0,
+      items:{
+        count:0,
+        total:0,
+        per_page:0
+      }
+    }
+    
   }
 
   ngOnInit(): void {
-    this.breakpoint=this.returnColumn(window.innerWidth);
+    this.animeService.getAllItems().subscribe((animes)=>{
+      this.anime=animes;
+    })
+    this.animeService.getAllPages().subscribe((pages)=>{
+      this.page=pages;
+      this.longitud=pages.items.total;
+      this.pageSize=pages.items.count;
+      this.pageSizeOptions=[5,10,20,25];
+      
+    })
   }
-
-  onResize($event:Event):void {
-    if ($event.target instanceof Window){
-      this.breakpoint=this.returnColumn($event.target.innerWidth);
-    }
+  
+  getPage(ev:PageEvent){
+    const page=ev.pageIndex+1;
+    const limit=ev.pageSize;
+    console.log(ev);
+    this.animeService.getAllItemsPerPage(page,limit).subscribe((animes)=>{
+      this.anime=animes;
+    });
+    
   }
+  
 
 
 }

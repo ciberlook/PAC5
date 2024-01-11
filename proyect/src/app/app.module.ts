@@ -15,14 +15,28 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatButtonModule} from '@angular/material/button'; 
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
 import { HomeComponent } from './component/home/home.component';
+import { CardComponent } from './component/base/card/card.component';
+import { GridComponent } from './component/base/grid/grid.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { ProgressSpinnerComponent } from './component/base/progress-spinner/progress-spinner.component'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {  MatDialogModule } from '@angular/material/dialog';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     DetailComponent,
-    HomeComponent
+    HomeComponent,
+    CardComponent,
+    GridComponent,
+    ProgressSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +50,12 @@ import { HomeComponent } from './component/home/home.component';
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    HttpClientModule,
+    MatTabsModule, 
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

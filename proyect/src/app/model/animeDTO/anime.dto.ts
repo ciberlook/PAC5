@@ -1,0 +1,24 @@
+export interface AnimeDTO {
+  id:number;
+  title:string;
+  url:string;
+  image:{
+    image_url:string,
+    small_image_url:string,
+    large_image_url:string
+  };
+  trailer:string;
+  type:string;
+  synopsis:string;
+  episodes:number;
+  source:string;
+  aired:string;
+  duration:string;
+  popularity:number;
+  licensors:{
+    mal_id:number,
+    type:string,
+    name:string,
+    url:string
+  }[];
+ }

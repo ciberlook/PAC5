@@ -1,1 +1,66 @@
-<p>detail works!</p>
+<p>
+    <mat-toolbar color="primary">
+      <span>My Application</span>
+      <span class="spacer"></span>
+           
+        <button (click)="goHome()" mat-raised-button color="primary"><mat-icon aria-hidden="false" aria-label="Arrow back" fontIcon="arrow_back"></mat-icon>Back</button>
+     
+    </mat-toolbar>
+</p>
+<div style="margin:1em;">
+    <h1>{{anime.title}}</h1>
+    <mat-divider></mat-divider>
+    <figure style="margin:1em 0; display: flex; flex-wrap: wrap;">
+        <img mat-card-image src="{{anime.image.large_image_url}}" alt="{{anime.title}}" >
+        <figcaption style="flex:1 1 auto;">
+            <mat-list role="list" style="margin-left: 1em;">
+                <mat-list-item role="listitem" >
+                    <strong>Type: </strong> <span>{{anime.type}}</span>
+                </mat-list-item>
+                <mat-divider style="margin-bottom: 1em; margin-top: 1em;"></mat-divider>
+                <mat-list-item role="listitem" >
+                    <strong>Gender: </strong> <span>{{anime.source}}</span>
+                </mat-list-item>
+                <mat-divider style="margin-bottom: 1em; margin-top: 1em;"></mat-divider>
+                <mat-list-item role="listitem" >
+                    <strong>Aired: </strong> <span>{{anime.aired}}</span>
+                </mat-list-item>
+                <mat-divider style="margin-bottom: 1em; margin-top: 1em;"></mat-divider>
+                <mat-list-item role="listitem" >
+                    <strong>Episode Duration: </strong> <span>{{anime.duration}}</span>
+                </mat-list-item>
+                <mat-divider style="margin-bottom: 1em; margin-top: 1em;"></mat-divider>
+                <mat-list-item role="listitem" >
+                    <strong>Popularity: </strong> <span>{{anime.popularity}}</span>
+                </mat-list-item>
+                <mat-divider style="margin-bottom: 1em; margin-top: 1em;"></mat-divider>
+
+                
+              </mat-list>
+        </figcaption>
+    </figure>
+    <div style="margin:1em;">
+        <button mat-raised-button color="accent" (click)="showDetails()">Mostrar más...</button>
+        <mat-tab-group *ngIf="!hidden">
+            <mat-tab label="Synopsis"> <p style="margin: 1em;">{{anime.synopsis}}</p> </mat-tab>
+            <mat-tab label="Licensors"> 
+                <ul *ngFor="let item of anime.licensors">
+                    <li>{{item.mal_id}}</li>
+                    <li>{{item.type}}</li>
+                    <li>{{item.name}}</li>
+                    <li><a href="{{item.url}}">{{item.url}}</a></li>
+                </ul> 
+        </mat-tab>
+            <mat-tab label="Trailers"> 
+                <div *ngIf="anime.trailer">
+                    <iframe width="560" height="315" [src]="this.anime.trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" allowfullscreen></iframe>
+                </div>
+                <div *ngIf="!anime.trailer">
+                    <p>No contiene ningún trailer</p>
+                </div>
+                
+            </mat-tab>
+          </mat-tab-group>
+          
+    </div>
+</div>
