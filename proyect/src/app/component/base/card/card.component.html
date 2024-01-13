@@ -3,7 +3,7 @@
       
         <mat-card-header>
             <div mat-card-avatar style="background-image: url({{anime.image.small_image_url}}); background-size: cover;"></div>
-            <mat-card-title>{{anime.title}}</mat-card-title>
+            <mat-card-title>{{anime.title | trucanteText}}</mat-card-title>
         </mat-card-header>
         
         <mat-card-content>
